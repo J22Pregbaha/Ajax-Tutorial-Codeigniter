@@ -14,6 +14,7 @@
 	<div class="container">
 		<div class="row">
 			<div class="col-md-12 mt-5">
+				<a href="<?php echo base_url(); ?>">Back to directory</a>
 				<h1 class="text-center">Codeigniter Ajax crud tutorial</h1>
 				<hr style="background-color: black; color: black; height: 1px;">
 			</div>

@@ -15,6 +15,7 @@
 	<div class="container">
 		<div class="row">
 			<div class="col-md-6 col-md-offset-3">
+				<a href="<?php echo base_url(); ?>">Back to directory</a>
 				<div id="bb_ajax_msg"></div>
 				<div class="login-panel panel panel-default" style="margin-top: 10%;">
 					<div class="panel-heading">

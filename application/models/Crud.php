@@ -70,6 +70,14 @@ class Crud extends CI_Model {
 			return $query->result();
 		}
 	}
+
+	public function read_where($field, $value, $table) {
+		$query = $this->db->where($field, $value);
+		$query = $this->db->get($table);
+		if($query->num_rows() > 0) {
+			return $query->result();
+		}
+	}
 	
 	public function read_field($field, $value, $table, $call) {
 		$return_call = '';

@@ -33,6 +33,7 @@
 <body>
 	<br />
 	<div class="container box">
+		<a href="<?php echo base_url(); ?>">Back to directory</a>
 		<br />
 		<h2 align="center">Multi Step Registration Form Using JQuery Bootstrap in PHP</h2><br />
 		<?php echo $message; ?>
