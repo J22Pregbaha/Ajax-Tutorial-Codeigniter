@@ -12,8 +12,8 @@
 		<button type="button" class="btn btn-secondary" onclick="window.location.href='<?php echo base_url(); ?>welcome'">Chat Application</button>
 		<button type="button" class="btn btn-success" onclick="window.location.href='<?php echo base_url(); ?>ajax_tut'">CRUD</button>
 		<button type="button" class="btn btn-danger" onclick="window.location.href='<?php echo base_url(); ?>dropdown'">Dynamic Dependent Dropdown</button>
-		<!-- <button type="button" class="btn btn-warning">Warning</button>
-		<button type="button" class="btn btn-info">Info</button>
+		<button type="button" class="btn btn-warning" onclick="window.location.href='<?php echo base_url(); ?>load'">Load more data</button>
+		<!-- <button type="button" class="btn btn-info">Info</button>
 		<button type="button" class="btn btn-light">Light</button>
 		<button type="button" class="btn btn-dark">Dark</button>
 
