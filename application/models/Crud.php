@@ -43,6 +43,15 @@ class Crud extends CI_Model {
 			return $query->result();
 		}
 	}
+
+	public function read_single_last($field, $value, $table) {
+		$query = $this->db->order_by('id', 'ASC');
+		$query = $this->db->where($field, $value);
+		$query = $this->db->get($table);
+		if($query->num_rows() > 0) {
+			return $query->result();
+		}
+	}
 	
 	public function read_single_order($field, $value, $table, $or_field, $or_value) {
 		$query = $this->db->order_by($or_field, $or_value);
@@ -99,6 +108,17 @@ class Crud extends CI_Model {
 	public function read_field($field, $value, $table, $call) {
 		$return_call = '';
 		$getresult = $this->read_single($field, $value, $table);
+		if(!empty($getresult)) {
+			foreach($getresult as $result)  {
+				$return_call = $result->$call;
+			}
+		}
+		return $return_call;
+	}
+
+	public function read_last_field($field, $value, $table, $call) {
+		$return_call = '';
+		$getresult = $this->read_single_last($field, $value, $table);
 		if(!empty($getresult)) {
 			foreach($getresult as $result)  {
 				$return_call = $result->$call;

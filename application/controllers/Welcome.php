@@ -56,7 +56,7 @@ class Welcome extends CI_Controller {
 				$this->session->set_userdata('chat', '');
 				$this->session->sess_destroy();
 				$this->Crud->msg('success', 'Sign Out Successful');
-				echo '<script>window.location.replace("'.base_url().'");</script>';
+				echo '<script>window.location.replace("'.base_url('welcome').'");</script>';
 			}
 		}
 	}

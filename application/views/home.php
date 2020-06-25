@@ -135,7 +135,7 @@
 		$('.selectUser').click(function() {
 			ChatSection(1);
 			var receiver_id = $(this).attr('id');
-			//alert(receiver_id);
+			
 			$('#ReciverId_txt').val(receiver_id);
 			$('#ReciverName_txt').html($(this).attr('title'));
 			
@@ -223,7 +223,7 @@
 					type: 'post',
 					data: {
 						messageTxt : messageTxt,
-						receiver_id : receiver_id,
+						receiver_id : receiver_id
 					},
 					success: function(data) {
 						GetChatHistory(receiver_id);
@@ -242,12 +242,15 @@
 		}
 
 		function GetChatHistory(receiver_id) {
+			var status = $('#status').val();
 			$.ajax({
 				url: '<?php echo base_url('user/get_messages?receiver_id='); ?>'+receiver_id,
 				success: function(data) {
 					$("#dumppy").html(data);
-					$('#content').scrollTop($('#content')[0].scrollHeight);
-					//$("#content").attr({ scrollTop: $("#content").attr("scrollHeight") });
+					if (status == "New") {
+						ScrollDown();
+						// $('#content').scrollTop($('#content')[0].scrollHeight);
+					}
 				},
 				error: function(jqXHR, status, err) {
 					// alert('Local error callback');

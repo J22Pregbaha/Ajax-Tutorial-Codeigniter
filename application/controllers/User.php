@@ -14,6 +14,7 @@ class User extends CI_Controller {
 		$user_id = $log_user_id;
 		$table = "users";
 		$data['other_users'] = $this->Crud->read("users");
+		$data['message_id'] = '';
 		$data['user_id'] = $user_id;
 		$data['title'] = "Chat";
 		$data['username'] = $this->Crud->read_field('id', $user_id, $table, 'username');
@@ -59,7 +60,6 @@ class User extends CI_Controller {
 			];
 			$ins_rec = $this->Crud->create($table, $ins_data);
 			if($ins_rec > 0) {
-				// $this->chat_component($post['receiver_id']);
 				$data = ['status' => 1 ,'message' => '' ];
 			} else {
 				$data = ['status' => 0 ,'message' => 'sorry we re having some technical problems. please try again !'];
@@ -94,19 +94,6 @@ class User extends CI_Controller {
 		}
 	}
 
-	/*public function chat_component($receiver_id)
-	{
-		//Check login
-		if (!$this->session->userdata('chat')) {
-			redirect('welcome');
-		}else {
-			$log_user_id = $this->session->userdata('chat');
-		}
-
-		$last_chat_id = $this->Crud->read_last_message_id($log_user_id, $receiver_id, 'chat');
-		$this->session->set_userdata('last_chat_message_id', $last_chat_id);
-	}*/
-
 	public function get_messages() {
 		//Check login
 		if (!$this->session->userdata('chat')) {
@@ -116,7 +103,6 @@ class User extends CI_Controller {
 		}
 
 		$receiver_id = $this->input->get('receiver_id');
-		//$last_chat_id = $this->session->userdata('last_chat_message_id');
 
 		$table = 'chat';
 
@@ -126,7 +112,7 @@ class User extends CI_Controller {
 			if ($history > 0) 
 
 			foreach ($history as $chat): 
-				$message = $chat->id;
+				$message_id = $chat->id;
 				$sender_id = $chat->sender_id;
 				$username = $this->Crud->read_field('id', $receiver_id, $table, 'username');
 				$message = $chat->message;
@@ -136,7 +122,7 @@ class User extends CI_Controller {
 			<?php 
 				$messageBody='';
 
-				if ($message == 'NULL') {//fetach media objects like images,pdf,documents etc
+				if ($message == 'NULL') {//fetch media objects like images,pdf,documents etc
 					$classBtn = 'right';
 					if ($log_user_id == $sender_id) {
 						$classBtn = 'left';
@@ -193,19 +179,23 @@ class User extends CI_Controller {
 				</div>
 			<?php }?>
 
-			<?php
-			endforeach;
+			<?php endforeach;
 
-			//Check if the last message has changed
-			/*$last_message_id = $this->Crud->read_last_message_id($log_user_id, $receiver_id, 'chat');
-			if ($last_message_id != $this->session->userdata('last_chat_message_id')) {
-				$data = ['status' => 1 ,'message' => 'New message'];
-				$this->session->set_userdata('last_chat_message_id', $last_message_id);
+			//Check if the last message is as recent as 3 seconds
+			$last_message_time = new DateTime($this->Crud->read_last_field('id', $message_id, 'chat', 'message_date_time'));
+			$current_time = new DateTime();
+			if ($current_time <= $last_message_time->add(new DateInterval('PT3S'))) {
+				$html = '<input type="hidden" value="New" id="status">';
+				$data = ['status' => 1 ,'message' => 'New message', 'current time' => $current_time,
+				'last_message_time' => $last_message_time];
 			} else {
-				$data = ['status' => 0 ,'message' => 'No new message', 'id' => $this->session->userdata('last_chat_message_id')];
-			}*/
+				$html = '<input type="hidden" value="None" id="status">';
+				$data = ['status' => 0 ,'message' => 'No new message'];
+			}
 		} else {
 			echo "No direct script access allowed";
 		}
+
+		echo $html;
 	}
 }
