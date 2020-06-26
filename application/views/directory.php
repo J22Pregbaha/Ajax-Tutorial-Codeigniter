@@ -13,8 +13,8 @@
 		<button type="button" class="btn btn-success" onclick="window.location.href='<?php echo base_url(); ?>ajax_tut'">CRUD</button>
 		<button type="button" class="btn btn-danger" onclick="window.location.href='<?php echo base_url(); ?>dropdown'">Dynamic Dependent Dropdown</button>
 		<button type="button" class="btn btn-warning" onclick="window.location.href='<?php echo base_url(); ?>load'">Load more data</button>
-		<!-- <button type="button" class="btn btn-info">Info</button>
-		<button type="button" class="btn btn-light">Light</button>
+		<button type="button" class="btn btn-info" onclick="window.location.href='<?php echo base_url(); ?>multiinsert'">Insert multiple records</button>
+		<!-- <button type="button" class="btn btn-light">Light</button>
 		<button type="button" class="btn btn-dark">Dark</button>
 
 		<button type="button" class="btn btn-link">Link</button> -->
