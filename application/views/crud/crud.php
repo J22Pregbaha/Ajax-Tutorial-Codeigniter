@@ -26,6 +26,10 @@
 				  Add records
 				</button>
 
+				<button type="button" class="btn btn-outline-primary btn-sm" id="openEditModal" data-toggle="modal" data-target="#editModal" style="display: none;">
+				  Edit records
+				</button>
+
 				<!-- Insert Modal -->
 				<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
 				  <div class="modal-dialog" role="document">
@@ -114,7 +118,6 @@
 		$(document).on("click", "#add", function(e) {
 			e.preventDefault();
 
-			// alert("test");
 			var name = $("#name").val();
 			var email = $("#email").val();
 			if (name == "" || email == "") {
@@ -130,7 +133,6 @@
 					},
 					success: function(data) {
 						fetch();
-						// $('#closeInsertModal').click();
 
 						if (data.response == "success"){
 							toastr["success"](data.message);

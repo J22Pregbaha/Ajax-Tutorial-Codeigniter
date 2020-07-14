@@ -116,6 +116,19 @@ class Crud extends CI_Model {
 		return $return_call;
 	}
 
+	public function read_select($field, $value, $table, $select, $call) {
+		$query = $this->db->select($select);
+		$query = $this->db->from($table);
+		$query = $this->db->where($field, $value);
+		$query = $this->db->get();
+		if($query->num_rows() > 0) {
+			foreach($query->result() as $result)  {
+				$return_call = $result->$call;
+			}
+		}
+		return $return_call;
+	}
+
 	public function read_last_field($field, $value, $table, $call) {
 		$return_call = '';
 		$getresult = $this->read_single_last($field, $value, $table);
