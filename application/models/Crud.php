@@ -171,6 +171,34 @@ class Crud extends CI_Model {
 		}
 	}
 
+	public function check($field, $value, $table){
+		$query = $this->db->where($field, $value);
+		$query = $this->db->get($table);
+		return $query->num_rows();
+	}
+	
+	public function check2($field, $value, $field2, $value2, $table){
+		$query = $this->db->where($field, $value);
+		$query = $this->db->where($field2, $value2);
+		$query = $this->db->get($table);
+		return $query->num_rows();
+	}
+	
+	public function check2_or($field, $value, $field2, $value2, $table){
+		$query = $this->db->where($field, $value);
+		$query = $this->db->or_where($field2, $value2);
+		$query = $this->db->get($table);
+		return $query->num_rows();
+	}
+	
+	public function check3($field, $value, $field2, $value2, $field3, $value3, $table){
+		$query = $this->db->where($field, $value);
+		$query = $this->db->where($field2, $value2);
+		$query = $this->db->where($field3, $value3);
+		$query = $this->db->get($table);
+		return $query->num_rows();
+	}
+
 	// For chat ///////////////////////////////////////////////////////////////////////////////
 	public function read_last_message_id($sender_id_value, $receiver_id_value, $table){
 		$condition= "`sender_id` = '$sender_id_value' AND `receiver_id` = '$receiver_id_value'";
@@ -203,34 +231,6 @@ class Crud extends CI_Model {
 	}
 	
 	//////////////////////////////////////////////////////////////////////////////////////
-
-	public function check($field, $value, $table){
-		$query = $this->db->where($field, $value);
-		$query = $this->db->get($table);
-		return $query->num_rows();
-	}
-	
-	public function check2($field, $value, $field2, $value2, $table){
-		$query = $this->db->where($field, $value);
-		$query = $this->db->where($field2, $value2);
-		$query = $this->db->get($table);
-		return $query->num_rows();
-	}
-	
-	public function check2_or($field, $value, $field2, $value2, $table){
-		$query = $this->db->where($field, $value);
-		$query = $this->db->or_where($field2, $value2);
-		$query = $this->db->get($table);
-		return $query->num_rows();
-	}
-	
-	public function check3($field, $value, $field2, $value2, $field3, $value3, $table){
-		$query = $this->db->where($field, $value);
-		$query = $this->db->where($field2, $value2);
-		$query = $this->db->where($field3, $value3);
-		$query = $this->db->get($table);
-		return $query->num_rows();
-	}
 	
 	//////////////////// U - UPDATE ///////////////////////
 	public function update($field, $value, $table, $data) {

@@ -16,7 +16,7 @@ class Rating extends CI_Controller {
 		foreach ($data as $row) {
 			$color = '';
 			$rating = $this->Crud->read_select('business_id', $row->id, 'rating', 'AVG(rating) as rating', 'rating');
-			//$rating = 3;
+			
 			$output .= '<h3 class="text-primary">'.$row->business_name.'</h3>
 						<ul class="list-inline" data-rating="'.$rating.'" title="Average Rating - '.$rating.'">';
 			for ($count=1; $count <= 5; $count++) { 
