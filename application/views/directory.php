@@ -15,9 +15,9 @@
 		<button type="button" class="btn btn-warning" onclick="window.location.href='<?php echo base_url(); ?>load'">Load more data</button>
 		<button type="button" class="btn btn-info" onclick="window.location.href='<?php echo base_url(); ?>multiinsert'">Insert multiple records</button>
 		<button type="button" class="btn btn-light" onclick="window.location.href='<?php echo base_url(); ?>rating'">Star rating</button>
-		<!-- <button type="button" class="btn btn-dark">Dark</button>
+		<button type="button" class="btn btn-dark" onclick="window.location.href='<?php echo base_url(); ?>skeleton'">Skeleton Loader</button>
 
-		<button type="button" class="btn btn-link">Link</button> -->
+		<!-- <button type="button" class="btn btn-link">Link</button> -->
 	</div>
 </body>
 </html>

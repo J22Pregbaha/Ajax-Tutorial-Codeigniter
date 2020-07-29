@@ -18,7 +18,7 @@ class Multiinsert extends CI_Controller {
 	public function insert()
 	{
 		if ($this->input->is_ajax_request()) {
-			$table = 'tbl_order_items ';
+			$table = 'tbl_order_items';
 
 			$order_id = uniqid();
 			$item_name = $this->input->post('item_name');
